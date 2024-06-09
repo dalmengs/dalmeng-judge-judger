@@ -9,7 +9,7 @@ class JudgeResult:
     # - 5: Runtime Error
     # `execution_time`의 단위는 ms입니다.
     # `memory_usage`의 단위는 KB입니다.
-    def __init__(self, problem_id, judge_result, code, language, code_length, execution_time=None, memory_usage=None, testcase=None, msg=None):
+    def __init__(self, problem_id, judge_result, code, language, code_length, file_id, execution_time=None, memory_usage=None, testcase=None, msg=None):
         self.__problem_id: int = problem_id
         self.__judge_result: int = judge_result
         self.__code: str = code
@@ -18,6 +18,7 @@ class JudgeResult:
         self.__execution_time: int = execution_time
         self.__memory_usage: int = memory_usage
         self.__testcase: list = testcase
+        self.__file_id: str = file_id
         self.__msg: str = msg
 
     def to_dict(self):
@@ -30,5 +31,6 @@ class JudgeResult:
             "execution_time": self.__execution_time,
             "memory_usage": self.__memory_usage,
             "testcase": self.__testcase,
-            "msg": self.__msg
+            "msg": self.__msg,
+            "file_id": self.__file_id
         }

@@ -23,7 +23,13 @@ class BaseResponseDto(BaseModel):
             }
 
     @staticmethod
-    def failed(status_code: int = 400, msg: str = "failed", data: object = None):
+    def failed(status_code: int = 400, msg: str = "failed", data: object = None, exception: Exception = None):
+        if exception:
+            return {
+                "status_code": exception.code,
+                "msg": exception.msg,
+                "data": data
+            }
         return {
             "status_code": status_code,
             "msg": msg,
