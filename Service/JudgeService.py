@@ -79,11 +79,11 @@ class JudgeService:
                 else: msg = "런타임 에러"
             print(f"최종 채점 결과: {color}{msg}{Style.RESET_ALL}")
             if judge_result["execution_time"]:
-                print(f"실행 시간: {judge_result["execution_time"]} ms")
+                print(f"실행 시간: {judge_result['execution_time']} ms")
             if judge_result["memory_usage"]:
-                print(f"사용 메모리: {judge_result["memory_usage"]} KB")
-            print(f"코드 길이: {judge_result["code_length"]} B")
-            print(f"채점 결과: {judge_result["msg"]}")
+                print(f"사용 메모리: {judge_result['memory_usage']} KB")
+            print(f"코드 길이: {judge_result['code_length']} B")
+            print(f"채점 결과: {judge_result['msg']}")
             testcase_string = ""
             if judge_result["testcase"]:
                 for i in judge_result["testcase"]:
@@ -94,5 +94,5 @@ class JudgeService:
                         i["memory_usage"],
                         i["message"]
                     )
-            print(f"테스트케이스 세부 결과:\n{testcase_string.strip()}")
+            print("테스트케이스 세부 결과:\n{}".format(testcase_string.strip()))
             print(f"=====================================================")
