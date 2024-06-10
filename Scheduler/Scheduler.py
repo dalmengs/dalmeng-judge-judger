@@ -41,10 +41,14 @@ class Scheduler:
             )
             return
 
-        yield json.dumps(PartialResult(
-            status_code=0,
-            message="채점 대기 중..."
-        ).to_dict(), ensure_ascii=False) + "\n"
+        yield json.dumps(
+            BaseResponseDto.ok(
+                status_code=100,
+                data=PartialResult(
+                        status_code=0,
+                        message="채점 대기 중..."
+                ).to_dict()
+        ), ensure_ascii=False) + "\n"
 
         is_scheduled = asyncio.get_running_loop().create_future()
         await self.__add_judge(is_scheduled)
@@ -85,10 +89,14 @@ class Scheduler:
                 )
                 return
 
-        yield json.dumps(PartialResult(
-            status_code=0,
-            message="실행 대기 중..."
-        ).to_dict(), ensure_ascii=False) + "\n"
+        yield json.dumps(
+            BaseResponseDto.ok(
+                status_code=100,
+                data=PartialResult(
+                        status_code=0,
+                        message="실행 대기 중..."
+                ).to_dict()
+        ), ensure_ascii=False) + "\n"
 
         is_scheduled = asyncio.get_running_loop().create_future()
         await self.__add_run(is_scheduled)
