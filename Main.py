@@ -95,7 +95,7 @@ async def post_judge(run_request_dto: RunRequestDto):
         return BaseResponseDto.ok(
             data=run_result
         )
-    except (InvalidStandardInputException or TooLongOutputException) as e:
+    except (InvalidStandardInputException, TooLongOutputException) as e:
         return BaseResponseDto.failed(
             code=e.code,
             msg=e.msg
