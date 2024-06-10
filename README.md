@@ -6,7 +6,12 @@
 
 ## 서버 정보
 * 프레임워크 : FastAPI
-* 언어 / 버전 : Python 3.12
+* 언어 / 버전 :
+    * Python : Python 3.8.10
+    * C : gcc (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0
+    * C++ : g++ (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0
+    * Java : openjdk version "1.8.0_412"
+* 서버를 실행할 때는 최소 2GB 이상의 여유 메모리가 있어야 합니다.
 
 </br>
 
@@ -16,7 +21,9 @@
 
 1. 도커가 설치되어 있는지 확인합니다.</br>
 
-`docker --version`
+```
+docker --version
+```
 
 2. 아래 커맨드로 서버를 실행합니다.</br>
 
@@ -34,7 +41,10 @@ docker run -itd -p 8004:8004 \
 
 아래 커맨드로 실행할 수도 있습니다.</br>
 
-`./docker.sh`
+```
+chmod +x ./docker.sh
+./docker.sh
+```
 
 </br>
 
@@ -42,7 +52,9 @@ docker run -itd -p 8004:8004 \
 
 1. 도커 컴포즈가 설치되어 있는지 확인합니다.</br>
 
-`docker-compose --version`
+```
+docker-compose --version
+```
 
 2. 아래 커맨드로 서버를 실행합니다.</br>
 
