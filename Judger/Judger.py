@@ -385,7 +385,7 @@ class Judger:
 
         compile_result = {
             "code": process.returncode,
-            "stderr": stderr.decode()
+            "stderr": stderr
         }
         compile_result["is_error"] = is_error or (process.returncode != 0 and not has_warnings)
         
