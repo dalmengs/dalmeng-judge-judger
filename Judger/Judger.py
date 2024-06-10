@@ -22,18 +22,19 @@ class Judger:
 
     # 언어 별 컴파일 커맨드입니다.
     __compile_command = {
-        "cpp": "g++ ./Code/{file_id}/Solution.cpp -o ./Code/{file_id}/Solution -O2 -Wall -lm -std=gnu++17",
-        "c": "gcc ./Code/{file_id}/Solution.c -o ./Code/{file_id}/Solution -O2 -Wall -lm -std=gnu11",
-        "java": "javac -J-Xms1024m -J-Xmx1024m -J-Xss1024m -encoding UTF-8 ./Code/{file_id}/Solution.java",
+        "cpp": "g++ ./Code/{file_id}/Solution.cpp -o ./Code/{file_id}/Solution -O2 -w -lm -std=gnu++17",
+        "c": "gcc ./Code/{file_id}/Solution.c -o ./Code/{file_id}/Solution -O2 -w -lm -std=gnu11",
+        "java": "javac -J-Xms512m -J-Xmx1024m -encoding UTF-8 ./Code/{file_id}/Solution.java",
         "py": "python3 -W ignore -c \"import py_compile; py_compile.compile(r'./Code/{file_id}/Solution.py')\""
     }
-    # 언어 별 실행 커맨드입니다.
+
     __run_command = {
         "cpp": "./Code/{file_id}/Solution",
         "c": "./Code/{file_id}/Solution",
-        "java": "cd ./Code/{file_id} && java -Xms1024m -Xmx1024m -Xss1024m -Dfile.encoding=UTF-8 Solution",
+        "java": "cd ./Code/{file_id} && java -Xms512m -Xmx1024m -Dfile.encoding=UTF-8 Solution",
         "py": "python3 -W ignore ./Code/{file_id}/Solution.py"
     }
+
 
     # 프로그램 테스트 / 실행 시 기본으로 적용되는 시간 / 메모리 제한입니다.
     __run_time_limit = float(env("DEFAULT_TIME_LIMIT"))
@@ -377,11 +378,16 @@ class Judger:
         )
         _, stderr = await process.communicate()
 
+        stderr = stderr.decode()
+
+        is_error = 'error' in stderr.lower()
+        has_warnings = 'warning' in stderr.lower()
+
         compile_result = {
             "code": process.returncode,
             "stderr": stderr.decode()
         }
-        compile_result["is_error"] = compile_result["code"] != 0 or len(compile_result["stderr"]) > 0
+        compile_result["is_error"] = is_error or (process.returncode != 0 and not has_warnings)
         
         return compile_result
     
