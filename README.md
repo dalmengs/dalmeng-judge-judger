@@ -10,7 +10,49 @@
 
 </br>
 
-## 서버 실행하기 
+</br>
+
+## 서버 실행하기 | [방법 1] Docker
+
+1. 도커가 설치되어 있는지 확인합니다.</br>
+
+`docker --version`
+
+2. 아래 커맨드로 서버를 실행합니다.</br>
+
+```
+docker run -itd -p 8004:8004 \
+    -e JUDGE_SERVER_PORT=8004 \
+    -e LOG_DIRECTORY=./log \
+    -e CHUNK_SIZE=6 \
+    -e DEFAULT_TIME_LIMIT=5.0 \
+    -e DEFAULT_MEMORY_LIMIT=128 \
+    --name dalmeng_judge_server \
+    -v ./log:/usr/src/app/log \
+    dalmeng/judge_server:1.0.0
+```
+
+아래 커맨드로 실행할 수도 있습니다.</br>
+
+`./docker.sh`
+
+</br>
+
+## 서버 실행하기 | [방법 2] Docker Compose
+
+1. 도커 컴포즈가 설치되어 있는지 확인합니다.</br>
+
+`docker-compose --version`
+
+2. 아래 커맨드로 서버를 실행합니다.</br>
+
+```
+docker-compose up -d
+```
+
+</br>
+
+## 서버 실행하기 | [방법 3] 직접 실행하기
 
 1. 서버 실행을 위한 라이브러리를 설치합니다.</br>
 
