@@ -1,7 +1,7 @@
 import aiohttp
 import asyncio
 
-url = "http://13.125.66.9:8004/api/v1/judge"
+url = "http://43.203.251.77:8004/api/v1/judge"
 
 cpp_code = """
 #include <iostream>

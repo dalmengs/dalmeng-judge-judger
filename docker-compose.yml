@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  judge_server:
+    image: dalmeng/judge_server:1.0.0
+    container_name: dalmeng_judge_server
+    ports:
+      - "8004:8004"
+    environment:
+      - JUDGE_SERVER_PORT=8004
+      - LOG_DIRECTORY=./log
+      - CHUNK_SIZE=6
+      - DEFAULT_TIME_LIMIT=5.0
+      - DEFAULT_MEMORY_LIMIT=128
+    volumes:
+      - ./log:/usr/src/app/log
